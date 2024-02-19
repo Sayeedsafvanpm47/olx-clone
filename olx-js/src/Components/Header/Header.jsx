@@ -31,12 +31,15 @@ function Header(props) {
   const routeToLogin = () => {
     navigate('/login'); 
   };
+  const goToHome = ()=>{
+    navigate('/')
+  }
 
   
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
-        <div className="brandName">
+        <div className="brandName" onClick={goToHome}>
           <OlxLogo></OlxLogo>
         </div>
         <div className="placeSearch">

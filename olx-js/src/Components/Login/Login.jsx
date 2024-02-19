@@ -5,6 +5,8 @@ import './Login.css';
 import { AuthContext, FirebaseContext } from '../../store/Context';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {toast} from 'react-toastify'
+import { CiHome } from "react-icons/ci";
 
 
 function Login() {
@@ -19,8 +21,13 @@ const handleLogin = (e)=>{
   firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
     setLoading(false);
 navigate('/')
-  }).catch((err)=>alert(err.message))
+  }).catch((err)=>{ toast('invalid credentials, please try again');
+ setLoading(false)
+})
   
+}
+const signUpBtn = ()=>{
+  navigate('/signup')
 }
 const {user} = useContext(AuthContext)
 useEffect(()=>{
@@ -28,6 +35,7 @@ if(user){
   navigate('/')
 }
 },[])
+
   return (
     <div className='mainDiv'>
       <img src="../../../Images/loginbg.webp" className='imagecontainer' alt="" />
@@ -44,6 +52,7 @@ if(user){
             onChange={(e)=>setEmail(e.target.value)}
             name="email"
             defaultValue="John"
+            required
           />
           <br />
           <label htmlFor="lname">Password</label>
@@ -56,6 +65,8 @@ if(user){
             onChange={e=>setPassword(e.target.value)}
             name="password"
             defaultValue="Doe"
+            required
+            
           />
           <br />
           <br />
@@ -63,7 +74,9 @@ if(user){
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
-        <a>Signup</a>
+        <a onClick={signUpBtn}>Signup</a>
+     <span><a href="/" className='home'>Go home  <CiHome/> </a></span>  
+       
       </div>
     </div>
   );

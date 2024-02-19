@@ -1,10 +1,16 @@
-import React from 'react';
-import Login from '../Components/Login/Login';
+import React, { lazy,Suspense } from 'react';
+
+const Login = lazy(()=>import('../Components/Login/Login'))
 
 function LoginPage() {
+
   return (
     <div>
-      <Login />
+<Suspense fallback={<div style={{alignContent:'center'}} className='spinner-border text-primary'>Loading...</div>}>
+
+<Login />
+</Suspense>
+   
     </div>
   );
 }

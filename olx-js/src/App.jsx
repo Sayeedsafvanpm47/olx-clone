@@ -1,6 +1,7 @@
 
 import {Routes,Route} from 'react-router-dom'
-
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useContext,useEffect,Suspense,lazy } from "react"
 import {AuthContext,FirebaseContext} from "./store/Context"
 
@@ -22,7 +23,13 @@ const App = () => {
     <div>
         <Post>
         
-        <Suspense fallback={<div style={{margin:'50%'}} className='spinner-border text-primary'></div>}>
+        <Suspense fallback={<div style={{alignContent:'center'}} className='spinner-border text-primary'>Loading...</div>}>
+        <div>
+    
+      <ToastContainer />
+
+
+    </div>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignupPage />} />

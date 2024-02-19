@@ -1,6 +1,8 @@
 
 import { useContext, useState } from 'react';
+import { CiHome } from "react-icons/ci";
 import Logo from '../../olx-logo.png';
+import {toast} from 'react-toastify'
 import './SignUp.css'
 import { FirebaseContext } from '../../store/Context';
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +12,14 @@ const [email,setEmail] = useState('')
 const [phone,setPhone] = useState('')
 const [password,setPassword] = useState('')
 const {firebase} = useContext(FirebaseContext)
+const [loading,setLoading] = useState(false)
 const navigate = useNavigate()
+const loginButton = ()=>{
+  navigate('/login')
+}
 const handleSubmit = (e)=>{
           e.preventDefault()
+          setLoading(true)
           console.log(username)
           console.log(firebase)
           firebase.auth().createUserWithEmailAndPassword(email,password).then((result)=>{
@@ -20,19 +27,22 @@ const handleSubmit = (e)=>{
               id:result.user.uid,
               username:username,
               phone:phone,
-
-            }).then(()=>navigate('/login')).catch((err)=>alert(err))
+              email : email
+             
+            }).then(()=>{navigate('/login'); setLoading(false)}).catch((err)=>{toast('Please fill in the details properly'); setLoading(false)})
             )
          
-          })
+          }).catch((err)=>{toast('Email already exists!'); setLoading(false)})
         
 
 }
 
   return (
+    <>
     <div>
+    <img src="../../../Images/signupbg.png" className='backgroundSignup' alt="" />
       <div className="signupParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <img className='logobg' width="200px" height="200px" src={Logo}></img>
         <form onSubmit={(e)=>handleSubmit(e)}>
           <label htmlFor="fname">Username</label>
           <br />
@@ -44,6 +54,7 @@ const handleSubmit = (e)=>{
             onChange={(e)=>setUsername(e.target.value)}
             name="name"
             defaultValue="John"
+            required
           />
           <br />
           <label htmlFor="fname">Email</label>
@@ -56,6 +67,7 @@ const handleSubmit = (e)=>{
             onChange={(e)=>setEmail(e.target.value)}
             name="email"
             defaultValue="John"
+            required
           />
           <br />
           <label htmlFor="lname">Phone</label>
@@ -68,6 +80,7 @@ const handleSubmit = (e)=>{
             onChange={(e)=>setPhone(e.target.value)}
             name="phone"
             defaultValue="Doe"
+            required
           />
           <br />
           <label htmlFor="lname">Password</label>
@@ -80,13 +93,18 @@ const handleSubmit = (e)=>{
             onChange={(e)=>setPassword(e.target.value)}
             name="password"
             defaultValue="Doe"
+            required
           />
           <br />
           <br />
-          <button>Signup</button>
+          <button>{loading?'Signing in...' : 'Sign up'}</button>
         </form>
-        <a>Login</a>
+        <a onClick={loginButton}>Login</a>
+        <span><a href="/" className='home'>Go home  <CiHome/> </a></span>  
+
+      
       </div>
     </div>
+    </>
   );
 }

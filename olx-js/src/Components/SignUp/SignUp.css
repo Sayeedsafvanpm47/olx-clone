@@ -1,19 +1,29 @@
 .signupParentDiv {
-          border: 1px solid black;
-          width: max-content;
+          border: 1px solid rgb(219, 219, 219);
+          width: 350px;
           padding: 10px;
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           border-radius: 6px;
+          background-color: rgba(255, 255, 255, 0.597);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.178);
+        }
+        .logobg{
+          margin-left: 20%;
         }
         
         .signupParentDiv .input {
-          border-top-color: transparent;
-          border-left-color: transparent;
-          border-right-color: transparent;
-          outline-color: transparent;
+          border-radius: 20px;
+          border-width: 0.5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          text-indent: 10px;
+          width: 100%;
+        }
+        .home{
+          text-decoration: none;
+          color: black;
         }
         
         .signupParentDiv button {
@@ -35,4 +45,7 @@
           justify-content: center;
           cursor: pointer;
         }
-        
+        .backgroundSignup{
+          background-size: contain;
+          width: 100%;
+        }

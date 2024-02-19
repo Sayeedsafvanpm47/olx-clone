@@ -21,10 +21,15 @@
         
         .loginParentDiv .input {
          
-          border: none;
+          border-radius: 20px;
+          border-width: 0.5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          text-indent: 10px;
           width: 100%;
-          box-shadow: #002f34;
-          border-radius: 30px;
+        }
+        .home{
+          text-decoration: none;
+          color: black;
         }
         
         .loginParentDiv button {

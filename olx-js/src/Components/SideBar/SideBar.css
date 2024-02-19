@@ -1,0 +1,57 @@
+.sidebarDiv{
+          margin-left: 40%
+          
+}
+.pHead{
+          font-size: 24px;
+          font-weight: 700;
+}
+.pSubHead{
+          font-size: 18px;
+          font-weight: 700;
+}
+.spanSub{
+          font-size: 13px;
+          font-weight: 700;
+}
+.filter{
+          color: rgba(128, 128, 128, 0.64);
+}
+.filter2{
+          color: rgba(128, 128, 128, 0.655);
+          font-size: 12px;
+
+}
+.boxWidth{
+          width: 100px;
+          min-width: 50px;
+          text-align: center;
+          margin: 10px;
+          
+}
+.boxWidth[type="number"]::-webkit-inner-spin-button,
+.boxWidth[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.boxWidth[type="number"] {
+  -moz-appearance: textfield;
+}
+.box{
+          margin-top: 20px;
+          
+}
+.inpcontainer{
+          margin-left: 30%;
+}
+
+.applybutton{
+          background-color: rgba(128, 128, 128, 0.381);
+          width: 100%;
+          margin-top: 7%;
+          border-radius: 10px;
+          border: none;
+          color: rgba(128, 128, 128, 0.775);
+          font-weight: 500;
+          height: 10%;
+}

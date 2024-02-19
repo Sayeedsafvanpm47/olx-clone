@@ -4,26 +4,36 @@ import OlxLogo from '../assets/OlxLogo';
 import Search from '../assets/Search';
 import Arrow from '../assets/Arrow';
 import SellButton from '../assets/SellButton';
+
 import SellButtonPlus from '../assets/SellButtonPlus';
-import Dropdown from 'react-dropdown'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext,FirebaseContext } from '../../store/Context';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 
 
 function Header(props) {
+  
   const {user} = useContext(AuthContext)
   const {firebase} = useContext(FirebaseContext)
   const navigate = useNavigate()
+  const [arrow,setArrow] = useState(false)
+  const changeArrow = ()=>{
+    setArrow(!arrow)
+  }
   const handleLogout = ()=>{
     firebase.auth().signOut().then(()=>{
  navigate('/')
     })
   }
+  const routeToLogin = () => {
+    navigate('/login'); 
+  };
+
   
   return (
-    <>
     <div className="headerParentDiv">
       <div className="headerChildDiv">
         <div className="brandName">
@@ -34,8 +44,10 @@ function Header(props) {
           
           <input type="" value='India'/>
      
-          <button className='btn btn-none p-0'><Arrow></Arrow></button>
-       
+        {!arrow && <button onClick={changeArrow} className='btn btn-none p-0 fs-4'><IoIosArrowDown /></button> }  
+        {arrow && <button onClick={changeArrow} className='btn btn-none p-0 fs-4'><IoIosArrowUp />
+</button>}
+         
         </div>
       
         <div className="productSearch">
@@ -52,12 +64,14 @@ function Header(props) {
         <div className="language">
           <span> ENGLISH </span>
           <Arrow></Arrow>
+           
         </div>
         <div className="loginPage">
-          <span>{user?`Hello ${user.displayName}`:'Login'}</span>
+          <span className='loginText' onClick={user? '' : routeToLogin}>{user?`Hello ${user.displayName}`:'Login'}</span>
           <hr />
+          <span className='logoutText' onClick={handleLogout}>{user && 'Click here to Logout'}</span>
         </div>
-        <span onClick={handleLogout}>{user && 'Logout'}</span>
+      
 
         <div className="sellMenu">
       <SellButton></SellButton>
@@ -69,9 +83,6 @@ function Header(props) {
         </div>
       </div>
     </div>
-  
-    </>
-
   );
 }
 

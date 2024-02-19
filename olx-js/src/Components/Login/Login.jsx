@@ -2,8 +2,8 @@
 
 import Logo from '../../olx-logo.png';
 import './Login.css';
-import { FirebaseContext } from '../../store/Context';
-import { useContext, useState } from 'react';
+import { AuthContext, FirebaseContext } from '../../store/Context';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -11,18 +11,28 @@ function Login() {
 const {firebase} = useContext(FirebaseContext)
 const [email,setEmail] = useState('')
 const [password,setPassword] = useState('')
+const [loading, setLoading] = useState(false);
 const navigate = useNavigate()
 const handleLogin = (e)=>{
   e.preventDefault()
+  setLoading(true);
   firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
+    setLoading(false);
 navigate('/')
   }).catch((err)=>alert(err.message))
   
 }
+const {user} = useContext(AuthContext)
+useEffect(()=>{
+if(user){
+  navigate('/')
+}
+},[])
   return (
-    <div>
+    <div className='mainDiv'>
+      <img src="../../../Images/loginbg.webp" className='imagecontainer' alt="" />
       <div className="loginParentDiv">
-        <img width="200px" height="200px" src={Logo}></img>
+        <div className='logocontainer'><img width="200px" height="200px" src={Logo}></img></div> 
         <form onSubmit={handleLogin}>
           <label htmlFor="fname">Email</label>
           <br />
@@ -49,7 +59,9 @@ navigate('/')
           />
           <br />
           <br />
-          <button>Login</button>
+          <button type="submit" disabled={loading}> 
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
         </form>
         <a>Signup</a>
       </div>

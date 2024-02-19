@@ -15,6 +15,7 @@
           padding: 16px;
           margin-top: 3em;
           width: 30vw;
+          
         }
         
         .viewParentDiv .rightSection .productDetails :first-child {
@@ -24,20 +25,23 @@
           font-size: 34px;
           line-height: 32px;
           margin-bottom: 20px;
+          
         }
         
         .viewParentDiv .rightSection .productDetails {
-          border: 1px solid black;
+          border: 1px solid rgb(186, 184, 184);
           padding: 6px;
           border-radius: 6px;
           margin-bottom: 2em;
           width: 100%;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         
         .viewParentDiv .rightSection .contactDetails {
-          border: 1px solid black;
+          border: 1px solid rgb(182, 182, 182);
           padding: 6px;
           border-radius: 6px;
+          box-shadow: 0 0 10px rgba(94, 93, 93, 0.1);
         }
         
         .viewParentDiv .rightSection .contactDetails :first-child {
@@ -48,3 +52,38 @@
           font-weight: 400;
           padding: 0;
         }
+        .details{
+          background-color: rgb(255, 255, 255);
+          height: fit-content;
+          padding: 30px;
+          width: 65.7%;
+          border-radius: 10px;
+          margin-left: 20px;
+          border: 0.4px solid gray;
+          margin-bottom: 10px;
+          margin-top: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .detailsP{
+          font-weight: 600;
+         
+        
+
+        }
+        .chatbutton{
+          background-color: white;
+          width: 90%;
+          margin-left: 5%;
+          margin-bottom: 10%;
+          border-radius: 5px;
+          border-width: 0.8px;
+          height: 50px;
+          font-weight: 600;
+          
+        }
+        .adId{
+          font-weight: 600;
+          font-size: 13px;
+          margin-top: 5px;
+        }
+    

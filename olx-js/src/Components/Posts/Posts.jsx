@@ -4,6 +4,7 @@ import './Posts.css'
 import { AuthContext, FirebaseContext } from '../../store/Context';
 import { PostContext } from '../../store/PostContext';
 import { useNavigate } from 'react-router-dom';
+import SideBar from '../SideBar/SideBar';
 
 function Posts() {
 const {setPostdetails} = useContext(PostContext)
@@ -25,11 +26,17 @@ useEffect(()=>{
  
 },[])
   return (
-    <div className="postParentDiv">
+    <>
+    <div className="row">
+      <div className={user&&'col-3'}>
+     {user && <SideBar></SideBar>} 
+      </div>
+      <div className={user?'col-9' : 'col-12'}>
+      <div className="postParentDiv">
       <div className="moreView">
         <div className="heading">
           <span>Quick Menu</span>
-          <span>View more</span>
+         
         </div>
         <div className="cards d-flex">
           {
@@ -48,15 +55,22 @@ useEffect(()=>{
   <div className="image">
     <img src={products.url} alt="" />
   </div>
+  
   <div className="content">
     <p className="rate">&#x20B9; {products.price}</p>
-    <span className="kilometer">{products.category}</span>
     <p className="name">{products.name}</p>
+    <p className="kilometer">{products.description?(products.description).slice(0,25) + '...':''}</p>
+    <span className="kilometer">Category : {products.category}</span>
+   
+   
   </div>
+
   <div className="date">
+  <span className="kilometer">{products.place?products.place:''}</span>
     <span>{products.createdAt}</span>
   </div>
   </div>
+  
  })
          
 
@@ -69,25 +83,42 @@ useEffect(()=>{
           <span>Fresh recommendations</span>
         </div>
         <div className="cards">
-          <div className="card">
-            <div className="favorite">
-              <Heart></Heart>
+          {products.map(product => {
+            if(product.boost === 'yes')
+            {
+
+              return <div className="card">
+              <div className="favorite">
+                <Heart></Heart>
+              </div>
+              <div className="image">
+                <img src={product.url} alt="" />
+              </div>
+              <div className="content">
+    <p className="rate">&#x20B9; {product.price}</p>
+    <p className="name">{product.name}</p>
+    <p className="kilometer">{product.description?(product.description).slice(0,25) + '...':''}</p>
+    <span className="kilometer">Category : {product.category}</span>
+   
+   
+  </div>
+  <div className="date">
+  <span className="kilometer">{product.place?product.place:''}</span>
+    <span>{product.createdAt}</span>
+  </div>
             </div>
-            <div className="image">
-              <img src="../../../Images/R15V3.jpg" alt="" />
-            </div>
-            <div className="content">
-              <p className="rate">&#x20B9; 250000</p>
-              <span className="kilometer">Two Wheeler</span>
-              <p className="name"> YAMAHA R15V3</p>
-            </div>
-            <div className="date">
-              <span>10/5/2021</span>
-            </div>
-          </div>
+
+            }
+          })}
+      
         </div>
       </div>
     </div>
+      </div>
+    </div>
+   
+
+    </>
   );
 }
 

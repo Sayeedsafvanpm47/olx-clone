@@ -36,7 +36,7 @@
           padding: 13px;
           max-width: 222px;
           width: 222px;
-          height: 270px;
+          height: 350px;
           display: inline-block;
           cursor: pointer;
         }
@@ -69,11 +69,12 @@
           font-size: medium;
         }
         .card .content .name {
-          font-size: small;
+          font-size:large;
+          font-weight: 600;
         }
         .card .date {
           display: flex;
-          justify-content: flex-end;
+          justify-content: space-between;
           font-size: small;
         }
         
@@ -85,3 +86,4 @@
           font-size: 24px;
           color: #002f34;
         }
+       

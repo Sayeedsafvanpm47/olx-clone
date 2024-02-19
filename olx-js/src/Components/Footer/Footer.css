@@ -25,3 +25,18 @@
         .footerParentDiv .footer p {
           margin: 0;
         }
+        banner {
+          position: relative;
+          width: 80vw;
+        }
+         .banner img{
+          width: 100vw;
+        }
+        .footerParentDiv .listitems{
+        
+          list-style: none;
+        }
+        .footerp{
+          font-size: 10px;
+          padding: 0 70px 0px 70px;
+        }
